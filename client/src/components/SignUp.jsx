@@ -42,7 +42,7 @@ const SignUp = () => {
         <input
           type="text"
           placeholder="*First Name"
-          name="fisrtName"
+          name="firstName"
           onChange={handleChange}
         />
         <input
@@ -89,8 +89,8 @@ const SignUp = () => {
           <option value="" name="role">
             Speciality...
           </option>
-          <option value="trainee">Trainee</option>
-          <option value="coach">Coach</option>
+          <option value="Trainee">Trainee</option>
+          <option value="Coach">Coach</option>
         </select>
         <button className="register-btn" type="submit" onClick={handleRegister}>
           Join Now

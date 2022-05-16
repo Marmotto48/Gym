@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { AiFillLike } from "react-icons/ai";
-import { BiCommentDetail } from "react-icons/bi";
-import { GoTasklist } from "react-icons/go";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { MdDelete } from "react-icons/md";
-import { IoIosAddCircle } from "react-icons/io";
 import { GrSchedules } from "react-icons/gr";
 import { useParams } from "react-router-dom";
 import { deleteUser, getUser, updateUser } from "../../redux/userSlice";
@@ -81,7 +76,6 @@ const TraineeProfile = () => {
                     See your Todo List{" "}
                   </label>
                 </div>
-                
               </div>
               <Link to={{ pathname: "/blog/newPost" }} style={linkStyle}>
                 <div className="pro">

@@ -38,7 +38,7 @@ export const getUser = createAsyncThunk(
       console.log(result.data);
       return result.data;
     } catch (error) {
-      return rejectWithValue(error.response.data.msg);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -77,7 +77,7 @@ export const updateUser = createAsyncThunk(
         headers: { token: localStorage.getItem("token") },
       });
       dispatch(getUser(info.id));
-      alert("Profile Updated !")
+      alert("Profile Updated !");
       return result.data;
     } catch (error) {
       return rejectWithValue(error.response.data.msg);
@@ -90,6 +90,18 @@ export const getCoaches = createAsyncThunk(
   async (info, { rejectWithValue }) => {
     try {
       const result = await axios.get("/user/coaches");
+      return result.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.msg);
+    }
+  }
+);
+//get all Trainees
+export const getTrainees = createAsyncThunk(
+  "users/getTrainees",
+  async (info, { rejectWithValue }) => {
+    try {
+      const result = await axios.get("/user/trainees");
       return result.data;
     } catch (error) {
       return rejectWithValue(error.response.data.msg);
@@ -195,6 +207,19 @@ const userSlice = createSlice({
       state.usersErrors = null;
     },
     [getCoaches.rejected]: (state, action) => {
+      state.loading = false;
+      state.errors = action.payload;
+    },
+    //get Trainees
+    [getTrainees.pending]: (state) => {
+      state.loading = true;
+    },
+    [getTrainees.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.users = action.payload;
+      state.usersErrors = null;
+    },
+    [getTrainees.rejected]: (state, action) => {
       state.loading = false;
       state.errors = action.payload;
     },

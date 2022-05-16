@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React from 'react'
 // import Navbar from './Navbar'
 import Footer from './Footer'
 import vid from '../assets/180419_Boxing_A1_04.mp4';

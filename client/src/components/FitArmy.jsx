@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import ReviewCard from "./ReviewCard";
 import { FaSortAmountDown } from "react-icons/fa";
-import { getCoaches } from "../redux/userSlice";
+import {  getTrainees } from "../redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const FitArmy = () => {
@@ -14,7 +14,7 @@ const FitArmy = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCoaches());
+    dispatch(getTrainees());
   }, [dispatch]);
 
   return (
@@ -52,7 +52,7 @@ const FitArmy = () => {
             {/* {currentData.map((entry) => ( */}
             {user.users &&
               user.users.map((user) => {
-                return <ReviewCard user={user}/>;
+                return <ReviewCard user={user} key={user._id} />;
               })}
 
             {/* ))} */}

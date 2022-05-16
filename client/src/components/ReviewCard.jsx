@@ -1,7 +1,5 @@
 import React from "react";
 import StarRatingComponent from "react-star-rating-component";
-import { getCoaches } from "../redux/userSlice";
-import { useDispatch, useSelector } from "react-redux";
 
 const ReviewCard = ({ date, user }) => {
   
@@ -9,7 +7,7 @@ const ReviewCard = ({ date, user }) => {
     <>
       
           <article className="review-card">
-            <img className="review-img" src={user.avatar.imageURL} />
+            <img className="review-img" src={user.avatar.imageURL} alt={user.firstName} />
             <div className="review-text">
               <h2 className="review-name">{user.firstName}</h2>
               <h3 className="review-name">{user.lastName}</h3>

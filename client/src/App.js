@@ -1,7 +1,6 @@
-import React, { lazy, Suspense } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import Lazy from "./components/Lazy";
 import ErrorPage from "./components/ErrorPage";
 import Navbar from "./components/Navbar/Navbar";
 import TraineeProfile from "./components/Profile/TraineeProfile";
