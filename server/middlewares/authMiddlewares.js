@@ -6,7 +6,6 @@ const auth = async (req, res, next) => {
     const verifyToken = jwt.verify(token, process.env.SecretKey);
     if (!verifyToken) res.status(401).json({ msg: "you are not authorized" });
     req.userID = verifyToken.id;
-    console.log(req.userID);
     next();
   } catch (error) {
     res.status(500).json({ msg: error });

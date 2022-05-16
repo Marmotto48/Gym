@@ -4,7 +4,11 @@ import NavbarUser from "./navbarUser";
 import NavbarVistor from "./navbarVistor";
 const Navbar = () => {
   const user = useSelector((state) => state.user);
-  return <div>{user.isAuth ? <NavbarUser /> : <NavbarVistor />}</div>;
+  return (
+    <div style={{ height: "50px" }}>
+      {user.isAuth ? <NavbarUser /> : <NavbarVistor />}
+    </div>
+  );
 };
 
 export default Navbar;

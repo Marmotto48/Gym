@@ -54,9 +54,7 @@ module.exports = {
       );
       res.json({ user: newUser, token });
     } catch (error) {
-      console.log(error);
       res.status(500).send({ msg: "Cannot save new user", error });
-      console.log(error);
     }
   },
   //login user
@@ -96,7 +94,6 @@ module.exports = {
       });
     } catch (error) {
       res.status(500).send({ msg: "Can not get user." });
-      console.log(error);
     }
   },
   //get users
@@ -105,13 +102,12 @@ module.exports = {
       const users = await User.find().select("-password");
       res.json(users);
     } catch (error) {
-      console.log(error);
       res.status(500).send({ msg: "can not get users", error });
     }
   },
   getTrainees: async (req, res) => {
     try {
-      const doc = await User.find({ role: "trainee" }).select("-password");
+      const doc = await User.find({ role: "Trainee" }).select("-password");
       res.json(doc);
     } catch (error) {
       res.status(500).json({ msg: "Can not get trainees.", error });
@@ -119,7 +115,7 @@ module.exports = {
   },
   getCoaches: async (req, res) => {
     try {
-      const doc = await User.find({ role: "coach" }).select("-password");
+      const doc = await User.find({ role: "Coach" }).select("-password");
       res.json(doc);
     } catch (error) {
       res.status(500).json({ msg: "Can not get coaches.", error });
@@ -127,13 +123,12 @@ module.exports = {
   },
   deleteUser: async (req, res) => {
     try {
-      console.log(req.userID);
-      //   if (req.params.id === req.userID) {
-      const deleteUser = await User.findByIdAndDelete(req.params.id);
-      res.json({ msg: "User deleted.", deleteUser });
-      //   } else {
-      // res.json({ msg: "You are not authorized for this action." });
-      //   }
+      if (req.params.id === req.userID) {
+        const deleteUser = await User.findByIdAndDelete(req.params.id);
+        res.json({ msg: "User deleted.", deleteUser });
+      } else {
+        res.json({ msg: "You are not authorized for this action." });
+      }
     } catch (error) {
       res.status(500).json({ msg: "Can not delete user.", error });
     }
@@ -156,7 +151,6 @@ module.exports = {
       );
       res.json(user);
     } catch (error) {
-      console.log(error);
       res.status(500).json({ msg: "Can not update profile.", error });
     }
   },

@@ -54,7 +54,7 @@ const NavbarUser = () => {
         <AccountMenu />
       </div>
     </nav>
-  ); 
+  );
 };
 
 export default NavbarUser;

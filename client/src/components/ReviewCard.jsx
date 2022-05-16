@@ -1,46 +1,44 @@
-import React from 'react';
-import StarRatingComponent from 'react-star-rating-component';
+import React from "react";
+import StarRatingComponent from "react-star-rating-component";
+import { getCoaches } from "../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-const ReviewCard = ({name,pic,rating,date, review}) => {
-    const month = ['Jan','Feb','Mar', 'Apr','May','Jun','Jul','Aug','Sep', 'Oct', 'Nov', 'Dec'];
-    
-    const datum = new Date(date);
-    
-    function daySuffix(day){
-        switch(Number(day)){
-            case 1: return `st`;
-            case 21: return `st`;
-            case 31: return `st`;
-            case 22: return `nd`;
-            case 3: return `rd`;
-            case 23: return `rd`;
-            default: return `th`;
-        }
-    }
-
-    return (
-        <article className="review-card">
-            <img src={pic} alt={name} className="review-img"/>
+const ReviewCard = ({ date, user }) => {
+  
+  return (
+    <>
+      
+          <article className="review-card">
+            <img className="review-img" src={user.avatar.imageURL} />
             <div className="review-text">
-                <h2 className="review-name">{name}</h2>
-                <div className="review-desc">
-                    <span className="review-rating" title={`${rating} out of 5`}>
-                        <StarRatingComponent 
-                            name="rating"
-                            editing={false}
-                            value = {rating}
-                            onStarClick = {()=>null}
-                        />
-                    </span>
-                    <span className="review-muted">Joined : 
-                    {datum.getUTCDate()}<sup>{daySuffix(datum.getUTCDate())}</sup>&ndash;{month[datum.getUTCMonth()]}&ndash;{datum.getUTCFullYear()}</span>
-                </div>
-                <p className="review-content">
-                    {review}
-                </p>
+              <h2 className="review-name">{user.firstName}</h2>
+              <h3 className="review-name">{user.lastName}</h3>
+              <div className="review-desc">
+                <span className="review-rating" title={`65 out of 5`}>
+                  <StarRatingComponent
+                    name="rating"
+                    editing={false}
+                    onStarClick={() => null}
+                  />
+                </span>
+                <span className="review-muted" style={{ fontSize: "20px" }}>
+                  Gender : {user.gender}
+                </span>
+              </div>
+              <p className="review-content" style={{ fontSize: "23px" }}>
+                Speciality : <b>{user.speciality} </b>
+              </p>
+              <p className="review-content">
+                Phone Number : <b>{user.phoneNumber} </b>
+              </p>
+              <p className="review-content">
+                Email : <b>{user.email} </b>
+              </p>
             </div>
-        </article>
-    )
-}
+          </article>;
+       
+    </>
+  );
+};
 
-export default ReviewCard
+export default ReviewCard;

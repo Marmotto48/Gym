@@ -58,7 +58,7 @@ const AboutHome = () => {
             </div>
             <div className="offer">
                  &lt;\&gt; Our basic pack starts at 89 per month
-                 JOIN NOW BTN--> redirect to join now page
+                 JOIN NOW BTN redirect to join now page
             </div>
             <em>featured trainer</em>
             <em>join our health awareness seminar held by nutritionist 2</em>

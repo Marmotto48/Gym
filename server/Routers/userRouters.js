@@ -24,8 +24,7 @@ router.get("/", getUsers);
 router.get("/trainees", getTrainees);
 router.get("/coaches", getCoaches);
 router.delete("/deleteuser/:id", auth, deleteUser);
-router.put("/update/:id", updateProfile);
+router.put("/update/:id", auth, updateProfile);
 router.get("/user/:id", getUser);
-
 
 module.exports = router;

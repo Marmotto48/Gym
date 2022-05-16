@@ -5,8 +5,8 @@ const mongoose = require("mongoose");
 const userSchema = mongoose.Schema({
   role: {
     type: String,
-    enum: ["coach", "trainee", "admin"],
-    default: "trainee",
+    enum: ["Coach", "Trainee", "Admin"],
+    default: "Trainee",
   },
   firstName: {
     type: String,
@@ -39,7 +39,7 @@ const userSchema = mongoose.Schema({
   },
   speciality: {
     type: String,
-    default: "Générale",
+    default: "General",
   },
   avatar: {
     imageURL: {

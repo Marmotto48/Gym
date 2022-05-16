@@ -28,6 +28,74 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+//get user
+export const getUser = createAsyncThunk(
+  "user/getUser",
+  async (id, { rejectWithValue }) => {
+    try {
+      const result = await axios.get(`/user/user/${id}`);
+      console.log(result.data);
+      return result.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.msg);
+    }
+  }
+);
+//delete user
+export const deleteUser = createAsyncThunk(
+  "users/deleteUser",
+  async (info, { rejectWithValue, dispatch }) => {
+    try {
+      const result = await axios.delete(`user/deleteuser/${info.id}`, {
+        headers: { token: localStorage.getItem("token") },
+      });
+      dispatch(logout());
+    } catch (error) {
+      return rejectWithValue(error.response.data.msg);
+    }
+  }
+);
+//get all users
+export const getUsers = createAsyncThunk(
+  "users/getUsers",
+  async (info, { rejectWithValue }) => {
+    try {
+      const result = await axios.get("/user/");
+      return result.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.msg);
+    }
+  }
+);
+//Update user
+export const updateUser = createAsyncThunk(
+  "users/updateUser",
+  async (info, { rejectWithValue, dispatch }) => {
+    try {
+      const result = await axios.put(`user/update/${info.id}`, info.data, {
+        headers: { token: localStorage.getItem("token") },
+      });
+      dispatch(getUser(info.id));
+      alert("Profile Updated !")
+      return result.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.msg);
+    }
+  }
+);
+//get all Coaches
+export const getCoaches = createAsyncThunk(
+  "users/getCoaches",
+  async (info, { rejectWithValue }) => {
+    try {
+      const result = await axios.get("/user/coaches");
+      return result.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.msg);
+    }
+  }
+);
 const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -62,7 +130,7 @@ const userSlice = createSlice({
       state.loading = true;
     },
     [register.fulfilled]: (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.userInfo = action.payload.user;
       state.token = action.payload.token;
       state.isAuth = true;
@@ -91,45 +159,45 @@ const userSlice = createSlice({
       state.loginErrors = action.payload;
       state.isAuth = false;
     },
-    //   //get user
-    //   [getUser.pending]: (state) => {
-    //     state.loading = true;
-    //   },
-    //   [getUser.fulfilled]: (state, action) => {
-    //     state.user = action.payload;
-    //     state.loading = false;
-    //     state.errors = null;
-    //   },
-    //   [getUser.rejected]: (state, action) => {
-    //     state.loading = false;
-    //     state.errors = action.payload;
-    //   },
-    //   //get users
-    //   [getUsers.pending]: (state) => {
-    //     state.loading = true;
-    //   },
-    //   [getUsers.fulfilled]: (state, action) => {
-    //     state.loading = false;
-    //     state.users = action.payload;
-    //     state.usersErrors = null;
-    //   },
-    //   [getUsers.rejected]: (state, action) => {
-    //     state.loading = false;
-    //     state.errors = action.payload;
-    //   },
-    //   //get users
-    //   [getDocs.pending]: (state) => {
-    //     state.loading = true;
-    //   },
-    //   [getDocs.fulfilled]: (state, action) => {
-    //     state.loading = false;
-    //     state.users = action.payload;
-    //     state.usersErrors = null;
-    //   },
-    //   [getDocs.rejected]: (state, action) => {
-    //     state.loading = false;
-    //     state.errors = action.payload;
-    //   },
+    //get user
+    [getUser.pending]: (state) => {
+      state.loading = true;
+    },
+    [getUser.fulfilled]: (state, action) => {
+      state.user = action.payload;
+      state.loading = false;
+      state.errors = null;
+    },
+    [getUser.rejected]: (state, action) => {
+      state.loading = false;
+      state.errors = action.payload;
+    },
+    //get all users
+    [getUsers.pending]: (state) => {
+      state.loading = true;
+    },
+    [getUsers.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.users = action.payload;
+      state.usersErrors = null;
+    },
+    [getUsers.rejected]: (state, action) => {
+      state.loading = false;
+      state.errors = action.payload;
+    },
+    //get Coaches
+    [getCoaches.pending]: (state) => {
+      state.loading = true;
+    },
+    [getCoaches.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.users = action.payload;
+      state.usersErrors = null;
+    },
+    [getCoaches.rejected]: (state, action) => {
+      state.loading = false;
+      state.errors = action.payload;
+    },
   },
 });
 
