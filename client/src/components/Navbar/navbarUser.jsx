@@ -43,6 +43,13 @@ const NavbarUser = () => {
         <NavLink to="/price" className="navbar-link" activeClassName="current">
           Pricing
         </NavLink>
+        <NavLink
+          to="/produit"
+          className="navbar-link"
+          activeClassName="current"
+        >
+          Products
+        </NavLink>
 
         <NavLink
           to="/contact"

@@ -12,7 +12,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { logout } from "../../../redux/userSlice";
-
+import { AiOutlineDashboard } from "react-icons/ai";
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -106,6 +106,20 @@ export default function AccountMenu() {
           </ListItemIcon>
           Logout
         </MenuItem>
+        {user.userInfo.role === "Admin" ? (
+          <MenuItem
+            onClick={() => {
+              history.push("/dashboard");
+            }}
+          >
+            <ListItemIcon>
+              <AiOutlineDashboard fontSize="small" />
+            </ListItemIcon>
+            Dashboard
+          </MenuItem>
+        ) : (
+          <></>
+        )}
         <Divider />
       </Menu>
     </React.Fragment>

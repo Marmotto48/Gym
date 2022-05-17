@@ -84,6 +84,8 @@ module.exports = {
           id: searchedUser._id,
           firstName: searchedUser.firstName,
           lastName: searchedUser.lastName,
+          role: searchedUser.role,
+          email: searchedUser.email,
         },
         process.env.SecretKey
       );
@@ -123,7 +125,7 @@ module.exports = {
   },
   deleteUser: async (req, res) => {
     try {
-      if (req.params.id === req.userID) {
+      if (req.params.id === req.userID || req.userRole === "Admin") {
         const deleteUser = await User.findByIdAndDelete(req.params.id);
         res.json({ msg: "User deleted.", deleteUser });
       } else {

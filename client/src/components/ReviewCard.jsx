@@ -5,7 +5,6 @@ const ReviewCard = ({ date, user }) => {
   
   return (
     <>
-      
           <article className="review-card">
             <img className="review-img" src={user.avatar.imageURL} alt={user.firstName} />
             <div className="review-text">
@@ -19,7 +18,7 @@ const ReviewCard = ({ date, user }) => {
                     onStarClick={() => null}
                   />
                 </span>
-                <span className="review-muted" style={{ fontSize: "20px" }}>
+                <span className="review-muted" style={{ fontSize: "20px" }}> 
                   Gender : {user.gender}
                 </span>
               </div>

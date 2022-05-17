@@ -13,6 +13,8 @@ import SignUp from "./components/SignUp";
 import IndividualExpert from "./components/IndividualExpert";
 import ReserveExpert from "./components/ReserveExpert";
 import FitArmy from "./components/FitArmy";
+import Products from "./components/Products/Products";
+import Dashboard from "./components/adminDash/dashboard";
 // import FitArmy from "./components/FitArmy";
 
 function App() {
@@ -24,13 +26,14 @@ function App() {
         <Route path="/about" component={About} />
         <Route path="/price" component={Pricing} />
         <Route path="/contact" component={Contact} />
-        <Route path="/produit" component={Produit} />
+        <Route path="/produit" component={Products} />
         <Route path="/register" component={SignUp} />
         <Route path="/error" component={ErrorPage} />
         <Route exact path="/staff/:id" component={IndividualExpert} />
         <Route exact path="/staff/:id/reserve" component={ReserveExpert} />
         <Route path="/fitarmy" component={FitArmy} />
         <Route path="/profile/:id" component={TraineeProfile} />
+        <Route path="/dashboard" component={Dashboard} />
         <Route component={ErrorPage} />
       </Switch>
     </>
